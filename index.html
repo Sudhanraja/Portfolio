@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="Sudhanraja S — Software Engineer at Oasys Cybernetics building backend services, REST APIs, and AI/LLM-powered features. Creator of FinPilot AI and Employee Handbook RAG."
+    />
+    <meta name="author" content="Sudhanraja S" />
+    <link rel="canonical" href="https://sudhanraja.dev/" />
+    <!-- Adapts the browser UI chrome to the active theme. -->
+    <meta name="theme-color" content="#f7f9fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sudhanraja S — Software / Backend / AI Engineer" />
+    <meta
+      property="og:description"
+      content="Backend services, REST APIs, and AI/LLM engineering. Creator of FinPilot AI and Employee Handbook RAG."
+    />
+    <meta property="og:url" content="https://sudhanraja.dev/" />
+    <meta property="og:image" content="https://sudhanraja.dev/og-image.png" />
+    <meta property="og:image:alt" content="Sudhanraja S — Software Engineer portfolio" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sudhanraja S — Software / Backend / AI Engineer" />
+    <meta
+      name="twitter:description"
+      content="Backend services, REST APIs, and AI/LLM engineering. Creator of FinPilot AI and Employee Handbook RAG."
+    />
+    <meta name="twitter:image" content="https://sudhanraja.dev/og-image.png" />
+
+    <title>Sudhanraja S | Software Engineer — Backend &amp; AI</title>
+
+    <!-- Structured data: Person schema (nice-to-have for rich results). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sudhanraja S",
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Oasys Cybernetics Pvt Ltd" },
+        "url": "https://sudhanraja.dev/",
+        "email": "mailto:sudhanraja003@gmail.com",
+        "sameAs": [
+          "https://github.com/Sudhanraja",
+          "https://www.linkedin.com/in/sudhanraja-s"
+        ],
+        "knowsAbout": [
+          "Backend Engineering",
+          "REST APIs",
+          "Java",
+          "Spring Boot",
+          "Python",
+          "FastAPI",
+          "PostgreSQL",
+          "Retrieval-Augmented Generation",
+          "LangChain",
+          "Large Language Models"
+        ]
+      }
+    </script>
+    <script>
+      // Set the theme before first paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

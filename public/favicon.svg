@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <style>
+    /* Theme-aware "S": deep teal on light UIs, bright teal on dark UIs. */
+    .s { fill: #0e8f83; }
+    @media (prefers-color-scheme: dark) {
+      .s { fill: #4fd1c5; }
+    }
+  </style>
+  <text x="50%" y="52%" class="s"
+        text-anchor="middle" dominant-baseline="central"
+        font-family="Inter, 'Segoe UI', system-ui, Arial, sans-serif"
+        font-size="62" font-weight="800" letter-spacing="-3">S</text>
+</svg>
