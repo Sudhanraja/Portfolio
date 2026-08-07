@@ -79,11 +79,13 @@
   transform: translateX(3px);
 }
 
-/* Solid ink button — primary action */
+/* Solid ink button — primary action. Lightly curved (pill) shape. */
 .btn--primary {
   background-color: var(--text-strong);
   color: var(--bg);
   border-color: var(--text-strong);
+  border-radius: 999px;
+  padding-inline: 30px;
 }
 
 .btn--primary:hover {
@@ -100,6 +102,19 @@
   padding-inline: 4px;
   border-radius: 0;
   border-bottom: 1px solid var(--border-strong);
+}
+
+/* Outlined button — secondary CTA (e.g. Hire Me) */
+.btn--outline {
+  background: none;
+  color: var(--text-strong);
+  border-color: var(--border-strong);
+}
+
+.btn--outline:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
 }
 
 .btn--text:hover {
@@ -286,25 +301,35 @@
 }
 
 .hero__kicker {
+  display: inline-block;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+
+.hero__availability {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-top: 30px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
-  margin-bottom: 26px;
 }
 
 .hero__status-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
   border-radius: 50%;
-  background: var(--accent-2);
-  box-shadow: 0 0 0 0 var(--accent-2-soft);
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
   animation: heroPulse 2.4s ease-out infinite;
 }
 
 @keyframes heroPulse {
   0% {
-    box-shadow: 0 0 0 0 var(--accent-2-soft);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
   }
   70% {
     box-shadow: 0 0 0 7px transparent;
@@ -488,9 +513,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Very tall phone portrait (720x1600) with the subject low-center; pull the
-     crop focus downward onto the face/shoulders instead of the empty sky. */
-  object-position: 50% 60%;
+  /* Square, centered headshot in a 3:4 frame — keep the face high-center so
+     the crop favors the head/shoulders. */
+  object-position: 50% 28%;
   display: block;
 }
 
@@ -911,6 +936,19 @@
   max-width: 68ch;
 }
 
+.project__desc-label {
+  font-family: var(--mono);
+  font-size: 0.82em;
+  letter-spacing: 0.02em;
+  color: var(--text-strong);
+  text-transform: uppercase;
+}
+
+.project__features-label {
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
 .project__highlights {
   margin: 0 0 30px;
   display: grid;
@@ -962,6 +1000,65 @@
   margin: 0;
 }
 
+/* ---------- Services ---------- */
+
+.services__lead {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 560px;
+  margin: -32px 0 48px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin: 0;
+}
+
+.service-card {
+  padding: 30px 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card__title {
+  font-family: var(--sans);
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+  margin-bottom: 12px;
+  /* Accent tick before each service title. */
+  padding-left: 18px;
+  position: relative;
+}
+
+.service-card__title::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.service-card__desc {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
 /* ---------- Contact ---------- */
 
 .contact__lead {
@@ -969,77 +1066,249 @@
   color: var(--text-muted);
   font-size: 1.1rem;
   max-width: 560px;
-  margin: 0 auto 60px;
+  margin: 0 auto 44px;
 }
 
-.contact__list {
+/* Two side-by-side paths: hire vs. freelance. */
+.contact__paths {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   max-width: 760px;
-  margin: 0 auto;
-  border-top: 1px solid var(--border-strong);
-}
-
-.contact__link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  padding: 28px 8px;
-  border-bottom: 1px solid var(--border);
-  transition: padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Accent line that grows in from the left on hover. */
-.contact__link::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0;
-  height: 1px;
-  background-color: var(--accent);
-  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.contact__link:hover {
-  padding-left: 28px;
-}
-
-.contact__link:hover::before {
-  width: 16px;
-}
-
-.contact__label {
-  min-width: 92px;
-  flex-shrink: 0;
+  margin: 0 auto 48px;
   text-align: left;
-  transition: color 0.25s ease;
 }
 
-.contact__link:hover .contact__label {
-  color: var(--accent);
+.contact__path {
+  padding: 26px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
 }
 
-.contact__handle {
-  flex: 1;
-  text-align: left;
+.contact__path-title {
   font-family: var(--sans);
-  font-size: 1.12rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-strong);
-  word-break: break-word;
+  margin-bottom: 10px;
 }
 
-.contact__arrow {
-  align-self: center;
+.contact__path-text {
   color: var(--text-muted);
-  font-size: 1.05rem;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+  font-size: 0.96rem;
+  line-height: 1.6;
 }
 
-.contact__link:hover .contact__arrow {
+/* Contact form */
+.contact__form {
+  max-width: 640px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+  text-align: left;
+}
+
+.contact__field {
+  display: grid;
+  gap: 8px;
+}
+
+.contact__field label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact__field input,
+.contact__field textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  color: var(--text-strong);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact__field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact__field input::placeholder,
+.contact__field textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.contact__field input:focus,
+.contact__field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---- Custom dropdown (replaces native <select> for a fully themed open list) ---- */
+.select {
+  position: relative;
+}
+
+.select__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  color: var(--text-strong);
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select__trigger:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.select__placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.select__chevron {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.select__chevron.is-open {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+.select__list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  display: grid;
+  gap: 2px;
+}
+
+.select__option {
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 0.96rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Themed hover/active highlight — accent tint instead of the OS blue. */
+.select__option.is-active {
+  background: var(--accent-soft);
   color: var(--accent);
-  transform: translate(5px, -5px);
+}
+
+.select__option.is-selected {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.select__option.is-selected.is-active {
+  background: var(--accent-soft);
+}
+
+.contact__submit {
+  justify-self: center;
+  margin-top: 8px;
+}
+
+/* Divider before the direct-contact buttons. */
+.contact__divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 640px;
+  margin: 48px auto 26px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact__divider::before,
+.contact__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.contact__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.contact__button {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  text-align: left;
+  transition: transform 0.22s ease, border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.contact__button:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-md);
+}
+
+.contact__button-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact__button-handle {
+  font-size: 0.92rem;
+  color: var(--text-strong);
 }
 
 /* ---------- Footer ---------- */
@@ -1144,6 +1413,18 @@
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 26px 4px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__paths {
+    grid-template-columns: 1fr;
+  }
+
+  .services__lead {
+    margin-top: -20px;
   }
 
   .exp__item {

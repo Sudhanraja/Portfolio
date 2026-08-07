@@ -3,24 +3,61 @@
 export const NAME = "Sudhanraja S";
 
 // Drop your photo at portfolio/public/ and point this at the filename.
-export const PROFILE_PHOTO = "/profile.jpeg";
+export const PROFILE_PHOTO = "/profile.png";
 
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
+  { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
-// Point this to your hosted resume (e.g. a PDF in /public).
+// Point this to your hosted resume (e.g. a PDF in /public). RESUME_DOWNLOAD_NAME
+// is the filename the browser saves it as.
 export const RESUME_URL = "/resume.pdf";
+export const RESUME_DOWNLOAD_NAME = "Sudhanraja_S_Software_Engineer_Resume.pdf";
+
+// Public contact details. Nothing secret here — safe to ship in the frontend.
+export const EMAIL = "sudhanraja003@gmail.com";
+export const WHATSAPP_NUMBER = "918754330144"; // wa.me format: country code + number, digits only
 
 export const SOCIALS = [
   { label: "GitHub", href: "https://github.com/Sudhanraja", handle: "@Sudhanraja" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/sudhanraja-s", handle: "in/sudhanraja-s" },
-  { label: "Email", href: "mailto:sudhanraja003@gmail.com", handle: "sudhanraja003@gmail.com" },
+  { label: "Email", href: `mailto:${EMAIL}`, handle: EMAIL },
+  {
+    label: "WhatsApp",
+    href: `https://wa.me/${WHATSAPP_NUMBER}`,
+    handle: "+91 87543 30144",
+  },
+];
+
+// Professional service offerings for freelance clients. Client-focused
+// descriptions, no fixed prices.
+export const SERVICES = [
+  {
+    title: "Full-Stack Web Application Development",
+    description:
+      "End-to-end web apps built with React and FastAPI — from database design to a polished, responsive interface, shipped and ready for real users.",
+  },
+  {
+    title: "Backend API Development & Integration",
+    description:
+      "Secure, well-structured REST APIs with authentication, clean data models, and third-party integrations that your product or team can build on with confidence.",
+  },
+  {
+    title: "AI Chatbot & RAG Application Development",
+    description:
+      "LLM-powered chatbots and retrieval-augmented systems that answer questions grounded in your own documents and data — accurate, cited, and production-ready.",
+  },
+  {
+    title: "Website Maintenance & Bug Fixing",
+    description:
+      "Ongoing support for existing sites and apps: fixing bugs, improving performance, and keeping everything running smoothly so you can focus on your business.",
+  },
 ];
 
 // Scripted terminal session for the hero signature element. Every line is
@@ -113,11 +150,14 @@ export const PROJECTS = [
     images: [
       { src: "/finpilot/dashboard.png", caption: "Dashboard" },
       { src: "/finpilot/analytics.png", caption: "Analytics" },
+      { src: "/finpilot/ai-advisor.png", caption: "AI Advisor" },
       { src: "/finpilot/income.png", caption: "Income" },
       { src: "/finpilot/expense.png", caption: "Expenses" },
       { src: "/finpilot/budget.png", caption: "Budget" },
       { src: "/finpilot/goals.png", caption: "Goals" },
+      { src: "/finpilot/profile.png", caption: "Profile" },
       { src: "/finpilot/login.png", caption: "Login" },
+      { src: "/finpilot/register.png", caption: "Register" },
     ],
     repo: "https://github.com/Sudhanraja/finpilot-ai",
     demo: "",
@@ -135,8 +175,11 @@ export const PROJECTS = [
       "Delivered an interactive Streamlit interface for real-time, document-based question answering.",
     ],
     tech: ["Python", "Streamlit", "ChromaDB", "Sentence Transformers", "Gemini API"],
-    images: [{ src: "/handbook-rag.png", caption: "Chat interface" }],
-    repo: "https://github.com/Sudhanraja/handbook-rag",
+    images: [
+      { src: "/handbook/answer.png", caption: "Grounded answer" },
+      { src: "/handbook/grounded.png", caption: "Declines off-topic" },
+    ],
+    repo: "https://github.com/Sudhanraja/Employee-Handbook-RAG",
     demo: "",
   },
 ];

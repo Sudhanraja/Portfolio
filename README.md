@@ -39,8 +39,8 @@ Builds to a fully static `dist/` — deployable anywhere with **no extra config*
 
 ### Before going live
 
-- Replace the placeholder domain `https://sudhanraja.dev/` in `index.html`
+- Production URL is `https://sudhanraja.vercel.app/`, wired into `index.html`
   (canonical, Open Graph, Twitter, JSON-LD), `public/robots.txt`, and
-  `public/sitemap.xml` with your real domain.
+  `public/sitemap.xml`. Update these if the domain changes.
 - Add an `og-image.png` (1200×630) to `public/` for social link previews.
-- Drop your résumé at `public/resume.pdf` (the hero's download button points there).
+- The résumé lives at `public/resume.pdf` (the hero's download button points there).

@@ -28,13 +28,26 @@ function ProjectCard({
           </span>
           <div className="project__links">
             {repo && (
-              <a href={repo} target="_blank" rel="noreferrer" className="project__link">
-                Code ↗
+              <a
+                href={repo}
+                target="_blank"
+                rel="noreferrer"
+                className="project__link"
+                aria-label={`View ${title} source code on GitHub`}
+              >
+                View Code ↗
               </a>
             )}
+            {/* Live Demo only renders when a real deployed URL exists. */}
             {demo && (
-              <a href={demo} target="_blank" rel="noreferrer" className="project__link">
-                Live ↗
+              <a
+                href={demo}
+                target="_blank"
+                rel="noreferrer"
+                className="project__link"
+                aria-label={`Open the live demo of ${title}`}
+              >
+                Live Demo ↗
               </a>
             )}
           </div>
@@ -45,19 +58,25 @@ function ProjectCard({
 
         {problem && (
           <p className="project__problem">
-            <span className="project__problem-label">The problem — </span>
+            <span className="project__problem-label">Problem — </span>
             {problem}
           </p>
         )}
 
-        <p className="project__desc">{description}</p>
+        <p className="project__desc">
+          <span className="project__desc-label">Solution — </span>
+          {description}
+        </p>
 
         {Array.isArray(highlights) && highlights.length > 0 && (
-          <ul className="project__highlights">
-            {highlights.map((h, i) => (
-              <li key={i}>{h}</li>
-            ))}
-          </ul>
+          <>
+            <p className="project__features-label mono-label">Key features</p>
+            <ul className="project__highlights">
+              {highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
+          </>
         )}
 
         <ul className="project__tech">

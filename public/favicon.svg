@@ -1,13 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--c1)" />
+      <stop offset="1" stop-color="var(--c2)" />
+    </linearGradient>
+  </defs>
   <style>
-    /* Theme-aware "S": deep teal on light UIs, bright teal on dark UIs. */
-    .s { fill: #0e8f83; }
+    :root { --c1: #0e8f83; --c2: #12b3a3; }
     @media (prefers-color-scheme: dark) {
-      .s { fill: #4fd1c5; }
+      :root { --c1: #4fd1c5; --c2: #16b8a6; }
     }
   </style>
-  <text x="50%" y="52%" class="s"
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#tile)" />
+  <text x="50%" y="53%" fill="#ffffff"
         text-anchor="middle" dominant-baseline="central"
         font-family="Inter, 'Segoe UI', system-ui, Arial, sans-serif"
-        font-size="62" font-weight="800" letter-spacing="-3">S</text>
+        font-size="40" font-weight="800" letter-spacing="-2">S</text>
 </svg>
