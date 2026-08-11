@@ -4,11 +4,11 @@ import Select from "./Select";
 import { SOCIALS, EMAIL } from "../data/portfolio";
 import { useReveal } from "../hooks/useReveal";
 
-const PURPOSE_OPTIONS = ["Job Opportunity", "Freelance Project"];
+const PURPOSE_OPTIONS = ["Job Opportunity", "General Enquiry"];
 
-// Two clear paths (hire vs. freelance) plus a contact form and quick-contact
-// buttons. The form has no backend — Submit opens the visitor's email client
-// pre-filled via a mailto: link, so nothing secret ships in the frontend.
+// A contact form plus quick-contact buttons. The form has no backend —
+// Submit opens the visitor's email client pre-filled via a mailto: link,
+// so nothing secret ships in the frontend.
 function Contact() {
   const ref = useReveal();
   const [form, setForm] = useState({
@@ -40,7 +40,7 @@ function Contact() {
   return (
     <Section id="contact" eyebrow="Contact" title="Get in touch" center>
       <p className="contact__lead">
-        Whether you're hiring for a role or have a project in mind, I'd love to
+        Whether you're hiring for a role or just want to connect, I'd love to
         hear from you.
       </p>
 
@@ -50,13 +50,6 @@ function Contact() {
           <p className="contact__path-text">
             I'm open to Software Engineer, Backend, and AI Engineer positions.
             Send a note or grab my resume — I'll get back to you quickly.
-          </p>
-        </div>
-        <div className="contact__path">
-          <h3 className="contact__path-title">Have a freelance project in mind?</h3>
-          <p className="contact__path-text">
-            Full-stack builds, backend APIs, or AI/RAG apps — tell me what you
-            need and I'll help you scope and ship it.
           </p>
         </div>
       </div>
@@ -100,14 +93,14 @@ function Contact() {
         </div>
 
         <div className="contact__field">
-          <label htmlFor="cf-message">Project requirement or message</label>
+          <label htmlFor="cf-message">Message</label>
           <textarea
             id="cf-message"
             required
             rows={5}
             value={form.message}
             onChange={update("message")}
-            placeholder="Tell me about the role or project…"
+            placeholder="Tell me about the role or your message…"
           />
         </div>
 

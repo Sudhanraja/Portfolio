@@ -1000,65 +1000,6 @@
   margin: 0;
 }
 
-/* ---------- Services ---------- */
-
-.services__lead {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 560px;
-  margin: -32px 0 48px;
-}
-
-.services {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-  margin: 0;
-}
-
-.service-card {
-  padding: 30px 28px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-card);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent-border);
-  box-shadow: var(--shadow-md);
-}
-
-.service-card__title {
-  font-family: var(--sans);
-  font-size: 1.12rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--text-strong);
-  margin-bottom: 12px;
-  /* Accent tick before each service title. */
-  padding-left: 18px;
-  position: relative;
-}
-
-.service-card__title::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 0.9em;
-}
-
-.service-card__desc {
-  color: var(--text-muted);
-  font-size: 0.98rem;
-  line-height: 1.65;
-}
-
 /* ---------- Contact ---------- */
 
 .contact__lead {
@@ -1069,12 +1010,11 @@
   margin: 0 auto 44px;
 }
 
-/* Two side-by-side paths: hire vs. freelance. */
 .contact__paths {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 20px;
-  max-width: 760px;
+  max-width: 480px;
   margin: 0 auto 48px;
   text-align: left;
 }
@@ -1413,18 +1353,6 @@
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 26px 4px;
-  }
-
-  .services {
-    grid-template-columns: 1fr;
-  }
-
-  .contact__paths {
-    grid-template-columns: 1fr;
-  }
-
-  .services__lead {
-    margin-top: -20px;
   }
 
   .exp__item {

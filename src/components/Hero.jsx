@@ -40,7 +40,7 @@ function Hero() {
 
           <p className="hero__availability">
             <span className="hero__status-dot" aria-hidden="true" />
-            Available for selected freelance projects
+            Open to new opportunities
           </p>
         </div>
 

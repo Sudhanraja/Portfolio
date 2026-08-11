@@ -10,7 +10,6 @@ export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
@@ -32,31 +31,6 @@ export const SOCIALS = [
     label: "WhatsApp",
     href: `https://wa.me/${WHATSAPP_NUMBER}`,
     handle: "+91 87543 30144",
-  },
-];
-
-// Professional service offerings for freelance clients. Client-focused
-// descriptions, no fixed prices.
-export const SERVICES = [
-  {
-    title: "Full-Stack Web Application Development",
-    description:
-      "End-to-end web apps built with React and FastAPI — from database design to a polished, responsive interface, shipped and ready for real users.",
-  },
-  {
-    title: "Backend API Development & Integration",
-    description:
-      "Secure, well-structured REST APIs with authentication, clean data models, and third-party integrations that your product or team can build on with confidence.",
-  },
-  {
-    title: "AI Chatbot & RAG Application Development",
-    description:
-      "LLM-powered chatbots and retrieval-augmented systems that answer questions grounded in your own documents and data — accurate, cited, and production-ready.",
-  },
-  {
-    title: "Website Maintenance & Bug Fixing",
-    description:
-      "Ongoing support for existing sites and apps: fixing bugs, improving performance, and keeping everything running smoothly so you can focus on your business.",
   },
 ];
 
