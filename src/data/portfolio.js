@@ -23,6 +23,9 @@ export const RESUME_DOWNLOAD_NAME = "Sudhanraja_S_Software_Engineer_Resume.pdf";
 export const EMAIL = "sudhanraja003@gmail.com";
 export const WHATSAPP_NUMBER = "918754330144"; // wa.me format: country code + number, digits only
 
+// Formspree endpoint the contact form submits to. Safe to expose client-side.
+export const FORMSPREE_ENDPOINT = "https://formspree.io/f/mljrbjda";
+
 export const SOCIALS = [
   { label: "GitHub", href: "https://github.com/Sudhanraja", handle: "@Sudhanraja" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/sudhanraja-s", handle: "in/sudhanraja-s" },

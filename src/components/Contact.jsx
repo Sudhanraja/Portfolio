@@ -1,40 +1,40 @@
 import { useState } from "react";
 import Section from "./Section";
-import Select from "./Select";
-import { SOCIALS, EMAIL } from "../data/portfolio";
+import { SOCIALS, FORMSPREE_ENDPOINT } from "../data/portfolio";
 import { useReveal } from "../hooks/useReveal";
 
-const PURPOSE_OPTIONS = ["Job Opportunity", "General Enquiry"];
-
-// A contact form plus quick-contact buttons. The form has no backend —
-// Submit opens the visitor's email client pre-filled via a mailto: link,
-// so nothing secret ships in the frontend.
+// A contact form plus quick-contact buttons. Submissions post directly to
+// Formspree, which relays them to the site owner's inbox — no custom backend.
 function Contact() {
   const ref = useReveal();
   const [form, setForm] = useState({
     name: "",
     email: "",
-    purpose: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
   const update = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const purpose = form.purpose || "General enquiry";
-    const subject = `[${purpose}] Portfolio enquiry from ${form.name || "someone"}`;
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Purpose: ${purpose}`,
-      "",
-      form.message,
-    ].join("\n");
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(e.target),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -44,21 +44,12 @@ function Contact() {
         hear from you.
       </p>
 
-      <div className="contact__paths">
-        <div className="contact__path">
-          <h3 className="contact__path-title">Looking to hire me for a role?</h3>
-          <p className="contact__path-text">
-            I'm open to Software Engineer, Backend, and AI Engineer positions.
-            Send a note or grab my resume — I'll get back to you quickly.
-          </p>
-        </div>
-      </div>
-
       <form className="contact__form reveal" ref={ref} onSubmit={handleSubmit}>
         <div className="contact__field">
           <label htmlFor="cf-name">Name</label>
           <input
             id="cf-name"
+            name="name"
             type="text"
             required
             autoComplete="name"
@@ -72,6 +63,7 @@ function Contact() {
           <label htmlFor="cf-email">Email</label>
           <input
             id="cf-email"
+            name="email"
             type="email"
             required
             autoComplete="email"
@@ -82,20 +74,10 @@ function Contact() {
         </div>
 
         <div className="contact__field">
-          <label htmlFor="cf-purpose">Contact purpose</label>
-          <Select
-            id="cf-purpose"
-            value={form.purpose}
-            placeholder="Select an option"
-            options={PURPOSE_OPTIONS}
-            onChange={(v) => setForm((f) => ({ ...f, purpose: v }))}
-          />
-        </div>
-
-        <div className="contact__field">
           <label htmlFor="cf-message">Message</label>
           <textarea
             id="cf-message"
+            name="message"
             required
             rows={5}
             value={form.message}
@@ -104,10 +86,31 @@ function Contact() {
           />
         </div>
 
-        <button type="submit" className="btn btn--primary contact__submit">
-          Send Message
+        <button
+          type="submit"
+          className="btn btn--primary contact__submit"
+          disabled={status === "sending"}
+        >
+          {status === "sending" ? "Sending…" : "Send Message"}
           <span aria-hidden="true">→</span>
         </button>
+
+        {status === "sent" && (
+          <div className="contact__banner contact__banner--ok" role="status">
+            <span className="contact__banner-icon" aria-hidden="true">✓</span>
+            <span>
+              Message sent — thanks for reaching out. I'll get back to you soon.
+            </span>
+          </div>
+        )}
+        {status === "error" && (
+          <div className="contact__banner contact__banner--error" role="alert">
+            <span className="contact__banner-icon" aria-hidden="true">!</span>
+            <span>
+              Something went wrong. Please try again or email me directly below.
+            </span>
+          </div>
+        )}
       </form>
 
       <div className="contact__divider" aria-hidden="true">
