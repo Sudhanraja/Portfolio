@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import FadeIn from './FadeIn'
 import HeroHorizon from './HeroHorizon'
 import Lightfall from './Lightfall/Lightfall'
@@ -23,12 +23,17 @@ export default function HeroSection() {
     return () => window.removeEventListener('pointermove', onMove)
   }, [mx, my, reduce])
 
+  // Lightfall only on mouse-driven screens: phone GPUs can draw it wrongly, and
+  // its cursor lens and hold-to-warp need a mouse. Touch devices get the
+  // horizon backdrop alone.
+  const [finePointer] = useState(() => window.matchMedia('(hover: hover) and (pointer: fine)').matches)
+
   return (
     <section id="home" className="relative flex h-screen flex-col" style={{ overflowX: 'clip' }}>
       <HeroHorizon className="absolute inset-0 z-0" />
       {/* Streaks of light in the site's magenta/violet palette, falling from a
           soft violet glow at the top of the hero. */}
-      <Lightfall
+      {finePointer && <Lightfall
         className="pointer-events-none !absolute inset-0 z-0"
         // Fade the streaks out toward the bottom so they don't end in a hard line.
         style={{
@@ -47,7 +52,7 @@ export default function HeroSection() {
         mouseInteraction
         holdToWarp
         intro
-      />
+      />}
       {/* Space for the fixed navbar */}
       <div className="h-20 shrink-0 sm:h-24" />
 

@@ -543,8 +543,10 @@ const FlexCarousel = ({
     };
 
     const metrics = s => {
-      const cardH = Math.max(24, s.cardHeight * height);
       const fixed = FIT_ASPECT[s.fit];
+      // Cap the height so the widest card still fits across narrow screens.
+      const widest = Math.max(0.1, ...slots.map(slot => fixed || slot.aspect));
+      const cardH = Math.max(24, Math.min(s.cardHeight * height, (width * 0.9) / widest));
       const widths = slots.map(slot => (fixed || slot.aspect) * cardH);
       const centers = [];
       let cursor = 0;
