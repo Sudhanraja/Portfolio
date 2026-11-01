@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import FlexCarousel from './FlexCarousel/FlexCarousel'
 
 type Slide = { src: string; caption: string }
@@ -8,6 +8,8 @@ type Slide = { src: string; caption: string }
 export default function ProjectSlides({ title, slides, onClose }: { title: string; slides: Slide[]; onClose: () => void }) {
   const stageRef = useRef<HTMLDivElement>(null)
   const items = slides.map((s) => ({ src: s.src, title: s.caption, alt: `${title} — ${s.caption}` }))
+  // Phones: keep screenshots flat and readable instead of the full liquid bend.
+  const [narrow] = useState(() => window.matchMedia('(max-width: 639px)').matches)
 
   useEffect(() => {
     // The carousel handles arrow keys itself once focused.
@@ -54,7 +56,9 @@ export default function ProjectSlides({ title, slides, onClose }: { title: strin
           style={{ width: '100%', height: '80vh', maxHeight: '100%', position: 'relative' }}
           onClick={(e) => e.stopPropagation()}
         >
-          <FlexCarousel className="!shadow-none" items={items} preset="liquid" intro="rise" cardHeight={0.68} gap={16} squeeze={0.2} focusOnClick captions />
+          <FlexCarousel className="!shadow-none" items={items} preset="liquid" intro="rise" cardHeight={0.68} gap={16} squeeze={0.2} focusOnClick captions
+            {...(narrow ? { bend: 0.04, tilt: 0, dispersion: 0 } : {})}
+          />
         </div>
       </div>
     </motion.div>
