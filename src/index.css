@@ -1,285 +1,173 @@
-/* Global design tokens, resets, and base typography.
-   "Terminal Signal" theme — deep-slate editor surfaces, cool off-white in
-   light mode, a teal signal accent with a lime secondary. Evokes an
-   engineer's actual environment (editor + terminal + syntax highlighting)
-   rather than a generic SaaS or cream/terracotta palette. */
-
-:root {
-  /* Surfaces — cool off-whites (light mode) */
-  --bg: #f7f9fb;
-  --bg-subtle: #eef2f6;
-  --bg-card: #ffffff;
-  --bg-ink: #0d1117;
-  /* Translucent bar backgrounds (navbar) — tokenized so they follow the theme */
-  --bg-blur: rgba(247, 249, 251, 0.82);
-  /* Terminal panel surface — always the dark editor ground, both themes */
-  --term-bg: #0d1117;
-  --term-head: #161d29;
-
-  /* Lines — cool hairlines */
-  --border: #e2e8f0;
-  --border-strong: #cdd6e0;
-  --border-hover: #b4c0cd;
-  --line-ink: rgba(13, 17, 23, 0.1);
-
-  /* Ink */
-  --text: #3d4a5c;
-  --text-muted: #6e7b8a;
-  --text-strong: #0d1117;
-  --text-on-ink: #e6edf3;
-  --text-on-ink-muted: rgba(230, 237, 243, 0.6);
-
-  /* Accent — teal signal (primary) + lime (secondary) */
-  --accent: #0e8f83;
-  --accent-strong: #0b7268;
-  --accent-soft: rgba(14, 143, 131, 0.08);
-  --accent-border: rgba(14, 143, 131, 0.3);
-  --accent-2: #5a8f10;
-  --accent-2-soft: rgba(90, 143, 16, 0.1);
-
-  /* Depth — cool-tinted */
-  --shadow-sm: 0 1px 2px rgba(13, 17, 23, 0.04),
-    0 2px 8px rgba(13, 17, 23, 0.05);
-  --shadow-md: 0 6px 16px -6px rgba(13, 17, 23, 0.1),
-    0 16px 40px -20px rgba(13, 17, 23, 0.16);
-  --shadow-lg: 0 20px 50px -18px rgba(13, 17, 23, 0.24);
-
-  --radius: 6px;
-
-  /* Typography */
-  --serif: "Playfair Display", "Times New Roman", Georgia, serif;
-  --sans: "Inter", "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
-
-  --max-width: 1180px;
-
-  color-scheme: light;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.7;
-  font-weight: 400;
-  color: var(--text);
-  background-color: var(--bg);
-  letter-spacing: -0.003em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* ---------- Dark theme (primary mood) ----------
-   Deep-slate editor surfaces; the teal signal accent stays vivid and the
-   lime secondary lifts slightly to read on the dark ground. The full token
-   set lives in one place (--dark-tokens style block below) and is applied
-   both when the user picks dark AND when the OS prefers it with no explicit
-   choice — so the two paths can never drift apart. */
-:root[data-theme="dark"],
-:root:not([data-theme]) {
-  --dark-bg: #0d1117;
-  --dark-bg-subtle: #131a24;
-  --dark-bg-card: #161d29;
-  --dark-bg-ink: #090c11;
-  --dark-bg-blur: rgba(13, 17, 23, 0.82);
-  --dark-term-bg: #0a0e14;
-  --dark-term-head: #161d29;
-
-  --dark-border: #232c38;
-  --dark-border-strong: #303b49;
-  --dark-border-hover: #435162;
-  --dark-line-ink: rgba(230, 237, 243, 0.14);
-
-  --dark-text: #aeb9c6;
-  --dark-text-muted: #6e7b8a;
-  --dark-text-strong: #e6edf3;
-
-  --dark-accent: #4fd1c5;
-  --dark-accent-strong: #6fe0d6;
-  --dark-accent-soft: rgba(79, 209, 197, 0.11);
-  --dark-accent-border: rgba(79, 209, 197, 0.32);
-  --dark-accent-2: #a3e635;
-  --dark-accent-2-soft: rgba(163, 230, 53, 0.12);
-
-  --dark-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.35);
-  --dark-shadow-md: 0 6px 16px -6px rgba(0, 0, 0, 0.55),
-    0 16px 40px -20px rgba(0, 0, 0, 0.6);
-  --dark-shadow-lg: 0 20px 50px -18px rgba(0, 0, 0, 0.7);
-}
-
-/* Map the dark values onto the live tokens for an explicit dark choice. */
-:root[data-theme="dark"] {
-  --bg: var(--dark-bg);
-  --bg-subtle: var(--dark-bg-subtle);
-  --bg-card: var(--dark-bg-card);
-  --bg-ink: var(--dark-bg-ink);
-  --bg-blur: var(--dark-bg-blur);
-  --term-bg: var(--dark-term-bg);
-  --term-head: var(--dark-term-head);
-  --border: var(--dark-border);
-  --border-strong: var(--dark-border-strong);
-  --border-hover: var(--dark-border-hover);
-  --line-ink: var(--dark-line-ink);
-  --text: var(--dark-text);
-  --text-muted: var(--dark-text-muted);
-  --text-strong: var(--dark-text-strong);
-  --accent: var(--dark-accent);
-  --accent-strong: var(--dark-accent-strong);
-  --accent-soft: var(--dark-accent-soft);
-  --accent-border: var(--dark-accent-border);
-  --accent-2: var(--dark-accent-2);
-  --accent-2-soft: var(--dark-accent-2-soft);
-  --shadow-sm: var(--dark-shadow-sm);
-  --shadow-md: var(--dark-shadow-md);
-  --shadow-lg: var(--dark-shadow-lg);
-  color-scheme: dark;
-}
-
-/* Follow the OS preference only when no explicit choice has been stored. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --bg: var(--dark-bg);
-    --bg-subtle: var(--dark-bg-subtle);
-    --bg-card: var(--dark-bg-card);
-    --bg-ink: var(--dark-bg-ink);
-    --bg-blur: var(--dark-bg-blur);
-    --term-bg: var(--dark-term-bg);
-    --term-head: var(--dark-term-head);
-    --border: var(--dark-border);
-    --border-strong: var(--dark-border-strong);
-    --border-hover: var(--dark-border-hover);
-    --line-ink: var(--dark-line-ink);
-    --text: var(--dark-text);
-    --text-muted: var(--dark-text-muted);
-    --text-strong: var(--dark-text-strong);
-    --accent: var(--dark-accent);
-    --accent-strong: var(--dark-accent-strong);
-    --accent-soft: var(--dark-accent-soft);
-    --accent-border: var(--dark-accent-border);
-    --accent-2: var(--dark-accent-2);
-    --accent-2-soft: var(--dark-accent-2-soft);
-    --shadow-sm: var(--dark-shadow-sm);
-    --shadow-md: var(--dark-shadow-md);
-    --shadow-lg: var(--dark-shadow-lg);
-    color-scheme: dark;
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-* {
-  margin: 0;
+html,
+body,
+#root {
+  background: #0c0c0c;
+  font-family: 'Kanit', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
 }
 
-body {
-  min-height: 100vh;
-  background-color: var(--bg);
-  color: var(--text);
+/* Land section headings below the fixed dock when jumping to them. */
+section[id] {
+  scroll-margin-top: 5.5rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+/* Accent word in a heading: the site's magenta-to-violet. */
+.accent-heading {
+  background: linear-gradient(180deg, #f07be6 0%, #d13bc4 45%, #7621b0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+/* Robot mascot: blinks every few seconds; the antenna light pulses. */
+.mascot-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mascot-blink 4.5s infinite;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-/* Serif display for all headings — the core of the editorial look. */
-h1,
-h2,
-h3 {
-  font-family: var(--serif);
-  color: var(--text-strong);
-  line-height: 1.1;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
-/* Monospace label utility — used for eyebrows, indices, tech tags. */
-.mono-label {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 1.5px solid var(--accent);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-::selection {
-  background: var(--text-strong);
-  color: var(--bg);
-}
-
-/* ---------- Scroll reveal (respects reduced-motion) ---------- */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-@media (max-width: 1024px) {
-  :root {
-    font-size: 16px;
+@keyframes mascot-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
   }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+.mascot-antenna {
+  animation: horizon-breathe 2s ease-in-out infinite;
+}
+
+/* Hello wave: the robot's right arm swings up from the shoulder, waves with
+   the hand rocking at the wrist, then drops. */
+.mascot-wave {
+  transform-box: view-box;
+  transform-origin: 34px 180px;
+  animation: mascot-wave 2s ease-in-out 0.5s both;
+}
+
+@keyframes mascot-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  16% {
+    transform: rotate(158deg);
+  }
+  30% {
+    transform: rotate(142deg);
+  }
+  44% {
+    transform: rotate(162deg);
+  }
+  58% {
+    transform: rotate(142deg);
+  }
+  72% {
+    transform: rotate(160deg);
+  }
+  82% {
+    transform: rotate(152deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.mascot-hand {
+  transform-box: view-box;
+  transform-origin: 34px 227px;
+  animation: mascot-hand 0.28s ease-in-out 0.75s 6 alternate both;
+}
+
+@keyframes mascot-hand {
+  from {
+    transform: rotate(-16deg);
+  }
+  to {
+    transform: rotate(16deg);
+  }
+}
+
+/* Hero horizon: the glow above the planet slowly breathes, the flare shimmers. */
+@keyframes horizon-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes horizon-flare {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.horizon-breathe {
+  animation: horizon-breathe 7s ease-in-out infinite;
+}
+
+.horizon-flare {
+  animation: horizon-flare 5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .mascot-blink,
+  .mascot-antenna,
+  .mascot-wave,
+  .mascot-hand,
+  .horizon-breathe,
+  .horizon-flare {
+    animation: none !important;
   }
+}
 
-  /* Signature terminal + hero: no pulsing, blinking, or typing motion. The
-     typewriter hook already renders the finished session for these users. */
-  .hero__status-dot {
-    animation: none;
-  }
+/* About profile card: near-black studio backdrop with a magenta-violet glow
+   behind the head and shoulders. */
+.profile-card--about .profile-card__tile {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 38%, rgba(209, 59, 196, 0.42), rgba(118, 33, 176, 0.22) 45%, transparent 75%),
+    linear-gradient(180deg, #17101d 0%, #0c0a10 100%);
+}
 
-  .term__cursor {
-    animation: none;
-  }
-
-  .term__cursor--idle {
-    display: none;
-  }
+/* Tailwind's base caps images at 100% width; the profile card's photo is
+   deliberately wider than its frame (for the tilt parallax). */
+.profile-card__photo {
+  max-width: none;
 }
